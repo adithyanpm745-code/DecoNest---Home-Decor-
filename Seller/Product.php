@@ -1,0 +1,473 @@
+<?php
+include("../Assets/Connection/Connection.php");
+session_start();
+if(isset($_POST["btn_submit"]))
+	{
+		$name=$_POST["txt_name"];
+		$details=$_POST["txt_details"];
+		$price=$_POST["txt_price"];
+		$subcategory=$_POST["sel_subcategory"];
+		$colour=$_POST["sel_colour"];
+		$material=$_POST["sel_material"];
+	
+		
+		
+		$photo=$_FILES["file_photo"]['name'];
+		$path=$_FILES["file_photo"]['tmp_name'];
+		move_uploaded_file($path,'../Assets/Files/ProductDocs/'.$photo);
+
+
+        $ProdQry="select * from tbl_product where product_name='".$name."' 
+         AND subcategory_id='".$subcategory."'
+         AND colour_id='".$colour."' 
+         AND material_id='".$material."' 
+         AND seller_id='".$_SESSION["sid"]."'";
+        $row=$con->query($ProdQry);
+        if($data=$row->fetch_assoc())
+          {
+?>
+               <script>
+            alert("This Same Product is Already Exists !")      
+            </script>
+           <?php   
+          }
+        else
+        { 
+		
+		$InsQry="insert into tbl_product(product_name,product_details,product_price,product_photo,subcategory_id,colour_id,material_id,product_date,seller_id) 
+		values('".$name."','".$details."','".$price."','".$photo."','".$subcategory."','".$colour."','".$material."',curdate(),'".$_SESSION["sid"]."')";
+		if($con->query($InsQry))
+		{
+			?>
+        <script>
+		alert("Product added successfully");
+		window.location="ViewProduct.php";
+		</script>
+        <?php	
+		}
+		else
+		{
+			?>
+        <script>
+		alert("Something has wrong")
+		window.location="Product.php";
+		</script>
+        <?php
+		}
+	}
+ }
+	if(isset($_GET['delId']))
+	{
+		$DelQry="delete from tbl_product where product_id='".$_GET['delId']."'";
+		if($con->query($DelQry))
+		{
+			?>
+            <script>
+			alert("The Product was removed from the list")
+			window.location="Product.php"
+			</script>
+			<?php
+		}
+	}
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products - DecoNest</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../Assets/Templates/Main/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../Assets/Templates/Main/css/all.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            background-image: url('https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(248, 249, 250, 0.9);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: none;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        .form-control, .form-select {
+            border-radius: 5px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #c8a97e;
+            box-shadow: 0 0 0 0.25rem rgba(200, 169, 126, 0.25);
+        }
+        
+        .btn-primary {
+            background-color: #c8a97e;
+            border-color: #c8a97e;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background-color: #b89768;
+            border-color: #b89768;
+        }
+        
+        .btn-outline-primary {
+            color: #c8a97e;
+            border-color: #c8a97e;
+            border-radius: 5px;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: #c8a97e;
+            color: #fff;
+        }
+        
+        .product-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .table th {
+            border-top: none;
+            font-weight: 600;
+            color: #5a5a5a;
+        }
+        
+        .page-title {
+            color: #5a5a5a;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .page-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #c8a97e;
+        }
+        
+        .main-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .action-buttons a {
+            margin-right: 8px;
+        }
+        
+        .badge-success {
+            background-color: #28a745;
+        }
+        
+        .badge-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        /* Custom file upload button */
+        .custom-file-upload {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: inline-block;
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .custom-file-upload:hover {
+            background-color: #e9ecef;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            color: #5a5a5a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header inclusion -->
+    <?php include('Header.php'); ?>
+
+    <div class="container main-container">
+        <h2 class="page-title">Manage Your Products</h2>
+        
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Add New Product</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="txt_name" class="form-label">Product Name</label>
+                                        <input type="text" class="form-control" name="txt_name" id="txt_name" 
+                                               pattern="^[A-Z][a-zA-Z 0-9 &+-,]{2,}$"
+                                               title="Please enter a valid Product name starting with a capital letter. Only letters, numbers, spaces, & and + are allowed (minimum 3 characters)." 
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="txt_price" class="form-label">Price (₹)</label>
+                                        <input type="text" class="form-control" name="txt_price" id="txt_price" 
+                                               pattern="^\d+(\.\d{1,2})?$"
+                                               title="Amount must be a positive number. Decimals allowed up to 2 places (e.g., 199 or 199.99)."
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="txt_details" class="form-label">Product Details</label>
+                                <textarea class="form-control" name="txt_details" id="txt_details" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="sel_category" class="form-label">Category</label>
+                                        <select class="form-select" name="sel_category" id="sel_category" onChange="AjaxPlace(this.value)" required>
+                                            <option value="">Select Category</option>
+                                            <?php
+                                            $sel = "select * from tbl_category";
+                                            $res = $con->query($sel);
+                                            while($data = $res->fetch_assoc()) {
+                                            ?>
+                                            <option value="<?php echo $data["category_id"]?>">
+                                                <?php echo $data["category_name"]?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="sel_subcategory" class="form-label">Subcategory</label>
+                                        <select class="form-select" name="sel_subcategory" id="sel_subcategory" required>
+                                            <option value="">Select Subcategory</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="sel_colour" class="form-label">Color</label>
+                                        <select class="form-select" name="sel_colour" id="sel_colour" required>
+                                            <option value="">Select Color</option>
+                                            <?php
+                                            $sel = "select * from tbl_colour";
+                                            $res = $con->query($sel);
+                                            while($data = $res->fetch_assoc()) {
+                                            ?>
+                                            <option value="<?php echo $data["colour_id"]?>">
+                                                <?php echo $data["colour_name"]?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="sel_material" class="form-label">Material</label>
+                                        <select class="form-select" name="sel_material" id="sel_material" required>
+                                            <option value="">Select Material</option>
+                                            <?php
+                                            $sel = "select * from tbl_material";
+                                            $res = $con->query($sel);
+                                            while($data = $res->fetch_assoc()) {
+                                            ?>
+                                            <option value="<?php echo $data["material_id"]?>">
+                                                <?php echo $data["material_name"]?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="file_photo" class="form-label">Product Image</label>
+                                <label for="file_photo" class="custom-file-upload">
+                                    <i class="fas fa-cloud-upload-alt"></i> Choose Product Image
+                                </label>
+                                <input type="file" name="file_photo" id="file_photo" accept="image/*" required>
+                                <div id="selectedFileName" class="mt-2 text-muted small">No file selected</div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <input type="reset" name="btn_reset" id="btn_reset" value="Reset" class="btn btn-outline-primary me-md-2">
+                                <input type="submit" name="btn_submit" id="btn_submit" value="Add Product" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <h5 class="section-title">Your Product List</h5>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>SL.NO</th>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Details</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Subcategory</th>
+                                <th>Colour</th>
+                                <th>Materials</th>
+                                <th>Date Added</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $i = 0;
+                            $SelQry = "select * from tbl_product p 
+                                      inner join tbl_subcategory s on p.subcategory_id = s.subcategory_id 
+                                      inner join tbl_category ca on s.category_id = ca.category_id
+                                      inner join tbl_colour c on p.colour_id = c.colour_id 
+                                      inner join tbl_material m on p.material_id = m.material_id 
+                                      where seller_id = '".$_SESSION['sid']."' order by p.product_id desc";
+                            
+                            $row = $con->query($SelQry);
+                            while($data = $row->fetch_assoc()) {
+                                $i++;
+
+                             $selstock = "SELECT sum(stock_count) as stock FROM tbl_stock WHERE product_id='" . $data["product_id"] . "'";
+        $selstock1 = "SELECT sum(cart_quantity) as cart_qty FROM tbl_cart WHERE product_id='" . $data["product_id"] . "' AND cart_status > 0";
+        $stockRes = $con->query($selstock)->fetch_assoc();
+        $cartRes = $con->query($selstock1)->fetch_assoc();
+
+        $totalStock = $stockRes['stock'] ? $stockRes['stock'] : 0;
+        $totalCart = $cartRes['cart_qty'] ? $cartRes['cart_qty'] : 0;
+        $remaining = $totalStock - $totalCart;
+
+	?>
+                            <tr>
+                                <td><?php echo $i ?></td>
+                                <td><img src="../Assets/Files/ProductDocs/<?php echo $data['product_photo'] ?>" class="product-img" alt="Product Image"></td>
+                                <td><?php echo $data['product_name'] ?></td>
+                                <td><?php echo $data['product_details'] ?></td>
+                                <td>₹<?php echo $data['product_price'] ?></td>
+                                <td><?php echo $data['category_name'] ?></td>
+                                <td><?php echo $data['subcategory_name'] ?></td>
+                                <td><?php echo $data['colour_name'] ?></td>
+                                <td><?php echo $data['material_name'] ?></td>
+                                <td><?php echo date('d M Y', strtotime($data['product_date'])) ?></td>
+                                <td class="action-buttons">
+                                    
+                                    <?php if ($remaining > 0) { ?>
+        Remining Stock: <?php echo $remaining; ?><br><br>
+           <a href="Stock.php?pid=<?php echo $data['product_id'] ?>" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-boxes"></i> Add Stock
+                                    </a>
+        <?php } else { ?><br>
+          <span style="color:red;">Out of Stock</span><br><br>
+           <a href="Stock.php?pid=<?php echo $data['product_id'] ?>" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-boxes"></i> Add Stock
+                                    </a>
+        <?php } ?>                  </td>
+                                    <td><br>&nbsp;&nbsp;&nbsp;
+                                    <a href="Product.php?delId=<?php echo $data['product_id'] ?>" class="btn btn-sm btn-outline-danger" 
+                                       onclick="return confirm('Are you sure you want to delete this product?')">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a><br><br>
+                                    <a href="Gallery.php?pid=<?php echo $data['product_id'] ?>" class="btn btn-sm btn-outline-info">
+                                        <i class="fas fa-images"></i> Gallery
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="../Assets/Templates/Main/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../Assets/JQ/jQuery.js"></script>
+    
+    <script>
+        function AjaxPlace(catId) {
+            $.ajax({
+                url: "../Assets/AjaxPages/AjaxSubCategory.php?catId=" + catId,
+                success: function(html) {
+                    $("#sel_subcategory").html(html);
+                }
+            });
+        }
+        
+        // Show selected file name
+        document.getElementById('file_photo').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('selectedFileName').textContent = 'Selected file: ' + fileName;
+        });
+    </script>
+</body>
+</html>
