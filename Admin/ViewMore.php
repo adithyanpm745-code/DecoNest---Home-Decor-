@@ -330,7 +330,7 @@ include('SideBar.php');
                                       inner join tbl_category ca on s.category_id = ca.category_id
                                       inner join tbl_colour c on p.colour_id = c.colour_id 
                                       inner join tbl_material m on p.material_id = m.material_id 
-                                      where seller_id = '".$_SESSION['sid']."'";
+                                      where seller_id = '".$_GET['sellermore']."'";
                             
                             $row = $con->query($SelQry);
                             while($data = $row->fetch_assoc()) {
@@ -409,4 +409,5 @@ include('SideBar.php');
         });
     </script>
 </body>
+
 </html>
