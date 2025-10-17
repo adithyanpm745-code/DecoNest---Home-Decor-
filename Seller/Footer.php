@@ -1,220 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Decor Footer</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        .footer-custom {
-            background-color: #f8f5f0;
-            padding-top: 3rem;
-            border-top: 1px solid #e5e1d8;
-        }
-        
-        .footer-title {
-            font-weight: 500;
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: #5a4d41;
-            position: relative;
-        }
-        
-        .footer-title:after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: #c0a87d;
-        }
-        
-        .footer-link {
-            color: #6c757d;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-        
-        .footer-link:hover {
-            color: #c0a87d;
-            padding-left: 5px;
-        }
-        
-        .footer-text {
-            color: #6c757d;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: white;
-            border: 1px solid #e5e1d8;
-            border-radius: 0.25rem;
-            color: #5a4d41;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-input:focus {
-            outline: none;
-            border-color: #c0a87d;
-            box-shadow: 0 0 0 0.25rem rgba(192, 168, 125, 0.25);
-        }
-        
-        .footer-btn {
-            background-color: #c0a87d;
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.25rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            width: 100%;
-        }
-        
-        .footer-btn:hover {
-            background-color: #a8926a;
-        }
-        
-        .footer-copyright {
-            background-color: #f1ece2;
-            padding: 1.5rem 0;
-            margin-top: 3rem;
-            border-top: 1px solid #e5e1d8;
-        }
-        
-        .copyright-text {
-            color: #6c757d;
-            margin: 0;
-        }
-        
-        .copyright-text a {
-            color: #c0a87d;
-            text-decoration: none;
-        }
-        
-        .social-icon {
-            display: flex;
-            justify-content: flex-end;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            background: #c0a87d;
-            color: white;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            margin-left: 0.75rem;
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            background: #a8926a;
-            transform: translateY(-3px);
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .footer-col {
-                margin-bottom: 2.5rem;
-            }
-            
-            .social-icon {
-                justify-content: center;
-            }
-            
-            .copyright-text, .social-container {
-                text-align: center;
-            }
-            
-            .copyright-text {
-                margin-bottom: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<!-- Footer Section -->
-<footer class="footer-custom">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-md-6 col-lg-3 footer-col">
-                <h5 class="footer-title">Our Collections</h5>
-                <a href="#" class="footer-link">Living Room</a>
-                <a href="#" class="footer-link">Bedroom</a>
-                <a href="#" class="footer-link">Dining Room</a>
-                <a href="#" class="footer-link">Home Office</a>
-                <a href="#" class="footer-link">Outdoor</a>
-            </div>
-            <div class="col-md-6 col-lg-2 footer-col">
-                <h5 class="footer-title">Quick Links</h5>
-                <a href="#" class="footer-link">About Us</a>
-                <a href="#" class="footer-link">Inspiration</a>
-                <a href="#" class="footer-link">Room Planner</a>
-                <a href="#" class="footer-link">Gift Cards</a>
-                <a href="#" class="footer-link">Special Offers</a>
-            </div>
-            <div class="col-md-6 col-lg-2 footer-col">
-                <h5 class="footer-title">Customer Care</h5>
-                <a href="#" class="footer-link">Contact Us</a>
-                <a href="#" class="footer-link">Shipping & Returns</a>
-                <a href="#" class="footer-link">Care Guide</a>
-                <a href="#" class="footer-link">FAQ</a>
-                <a href="#" class="footer-link">Track Order</a>
-            </div>
-            <div class="col-md-6 col-lg-2 footer-col">
-                <h5 class="footer-title">Information</h5>
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms & Conditions</a>
-                <a href="#" class="footer-link">Careers</a>
-                <a href="#" class="footer-link">Press Enquiries</a>
-                <a href="#" class="footer-link">Sustainability</a>
-            </div>
-            <div class="col-md-12 col-lg-3 footer-col">
-                <h5 class="footer-title">Newsletter</h5>
-                <p class="footer-text">Subscribe to receive inspiration, ideas, and news in your inbox.</p>
-                <form>
-                    <input type="email" class="footer-input" placeholder="Your email address">
-                    <button type="submit" class="footer-btn">Subscribe</button>
-                </form>
-            </div>
-        </div>
+<!-- Seller Unique Footer -->
+<footer class="seller-footer-unique">
+  <div class="seller-footer-wrapper">
+    <div class="seller-footer-block">
+      <h4 class="seller-footer-heading">DecoNest Seller Panel</h4>
+      <div class="seller-footer-bar"></div>
+      <p>
+        Expand your home decor business and track your sales with ease. Dedicated to creative seller growth!
+      </p>
     </div>
-    <div class="footer-copyright">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <p class="copyright-text">&copy; <script>document.write(new Date().getFullYear());</script> DecoNest Home Decor. Crafted with <i class="fas fa-heart" style="color: #c0a87d;"></i> for beautiful homes.</p>
-                </div>
-                <div class="col-lg-4">
-                    <div class="social-container">
-                        <div class="social-icon">
-                            <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-houzz"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="seller-footer-block">
+      <h4 class="seller-footer-heading">Quick Seller Links</h4>
+      <div class="seller-footer-bar"></div>
+      <ul>
+        <li><a href="HomePage.php">Dashboard</a></li>
+        <li><a href="Product.php">Add Product</a></li>
+        <li><a href="ViewBooking.php">Orders</a></li>
+        <li><a href="Report1.php">Report</a></li>
+      </ul>
     </div>
+    <div class="seller-footer-block">
+      <h4 class="seller-footer-heading">Seller Support</h4>
+      <div class="seller-footer-bar"></div>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Support</a></li>
+        <li><a href="#">Policy</a></li>
+      </ul>
+    </div>
+    <div class="seller-footer-block">
+      <h4 class="seller-footer-heading">Contact Us</h4>
+      <div class="seller-footer-bar"></div>
+      <p><i class="fa fa-map-marker"></i> DecoNest.Inc  Kerala, India</p>
+      <p><i class="fa fa-phone"></i> +91 6282270579</p>
+      <p><i class="fa fa-envelope"></i> deconest001@gmail.com</p>
+    </div>
+  </div>
+  <div class="seller-footer-bottom">
+    <span>© 2025 DecoNest Sellers. Unique platform for unique sellers.</span>
+    <div class="seller-footer-social">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+    </div>
+  </div>
 </footer>
-
-<!-- Bootstrap JS (Optional) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<style>
+  .seller-footer-unique {
+    background: #634776ff;
+    color: #e9e6ed;
+    padding: 38px 0 0 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+  .seller-footer-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 16px;
+    gap: 38px;
+    justify-content: space-between;
+  }
+  .seller-footer-block {
+    flex: 1 1 210px;
+    min-width: 190px;
+    margin: 15px 0;
+  }
+  .seller-footer-heading {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    letter-spacing: 0.5px;
+  }
+  .seller-footer-bar {
+    width: 60px;
+    height: 2px;
+    background: #ad73df;
+    margin-bottom: 11px;
+  }
+  .seller-footer-block ul {
+    list-style: none;
+    padding: 0;
+    font-size: 15px;
+  }
+  .seller-footer-block ul li {
+    margin-bottom: 7px;
+  }
+  .seller-footer-block a {
+    color: #e9e6ed;
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+  .seller-footer-block a:hover {
+    color: #ad73df;
+  }
+  .seller-footer-block p {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+  .seller-footer-bottom {
+    background: #483458ff;
+    color: #b2adb7;
+    padding: 15px 0 11px 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .seller-footer-social a {
+    color: #b2adb7;
+    margin-left: 16px;
+    font-size: 18px;
+    transition: color 0.17s;
+  }
+  .seller-footer-social a:hover {
+    color: #ad73df;
+  }
+  @media (max-width: 900px) {
+    .seller-footer-wrapper, .seller-footer-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 0;
+    }
+    .seller-footer-social {
+      margin-top: 8px;
+    }
+  }
+</style>
