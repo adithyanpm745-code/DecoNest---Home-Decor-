@@ -152,36 +152,35 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-6 col-lg-3 footer-col">
+                <h5 class="footer-title">About US</h5>
+                <p class="footer-text">Welcome to Deconest, where every piece has a purpose. 
+                    We help you transform your house into a sanctuary of style and comfort.
+                    Discover curated collections that tell your unique story. 
+                    Let us guide you in creating a home you truly love.</p>
+            </div>
+            <div class="col-md-6 col-lg-2 footer-col">
                 <h5 class="footer-title">Our Collections</h5>
-                <a href="#" class="footer-link">Living Room</a>
-                <a href="#" class="footer-link">Bedroom</a>
-                <a href="#" class="footer-link">Dining Room</a>
-                <a href="#" class="footer-link">Home Office</a>
-                <a href="#" class="footer-link">Outdoor</a>
+                <a href="ViewProduct.php" class="footer-link">New Arrival</a>
+                <a href="ViewProduct.php" class="footer-link">Living Room</a>
+                <a href="ViewProduct.php" class="footer-link">Kitchen & Dining</a>
+                <a href="ViewProduct.php" class="footer-link">Home Office</a>
+                <a href="ViewProduct.php" class="footer-link">Outdoor & Indoor</a>
             </div>
             <div class="col-md-6 col-lg-2 footer-col">
                 <h5 class="footer-title">Quick Links</h5>
-                <a href="#" class="footer-link">About Us</a>
-                <a href="#" class="footer-link">Inspiration</a>
-                <a href="#" class="footer-link">Room Planner</a>
-                <a href="#" class="footer-link">Gift Cards</a>
-                <a href="#" class="footer-link">Special Offers</a>
+                <a href="HomePage.php" class="footer-link">Dashboard</a>
+                <a href="MyProfile.php" class="footer-link">My Profile</a>
+                <a href="ViewSeller.php" class="footer-link">View Shops</a>
+                <a href="ViewProduct.php" class="footer-link">Products</a>
+                <a href="MyBooking.php" class="footer-link">View Booking</a>
             </div>
             <div class="col-md-6 col-lg-2 footer-col">
-                <h5 class="footer-title">Customer Care</h5>
-                <a href="#" class="footer-link">Contact Us</a>
-                <a href="#" class="footer-link">Shipping & Returns</a>
-                <a href="#" class="footer-link">Care Guide</a>
-                <a href="#" class="footer-link">FAQ</a>
-                <a href="#" class="footer-link">Track Order</a>
-            </div>
-            <div class="col-md-6 col-lg-2 footer-col">
-                <h5 class="footer-title">Information</h5>
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms & Conditions</a>
-                <a href="#" class="footer-link">Careers</a>
-                <a href="#" class="footer-link">Press Enquiries</a>
-                <a href="#" class="footer-link">Sustainability</a>
+                <h5 class="footer-title">Contact Us</h5>
+                <p class="footer-text"> DecoNest.Inc  Kerala, India <br> +91 6282270579 <br> deconest001@gmail.com</p>
+                <!-- <h5 class="footer-title">Customer Care</h5> -->
+                .....................................
+                <a href="Complaint.php" class="footer-link">Complaints</a>
+                <a href="FeedBack.php" class="footer-link">Feedback</a>
             </div>
             <div class="col-md-12 col-lg-3 footer-col">
                 <h5 class="footer-title">Newsletter</h5>
